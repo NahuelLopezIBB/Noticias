@@ -33,8 +33,18 @@ la tarea.
   medios serios de distintas líneas editoriales.
 - Tono informativo y neutral. En temas políticos, presentar los hechos y, si
   corresponde, las posiciones de cada parte, sin opinar.
+- **Contexto cuando la noticia lo requiera.** Si una noticia es parte de una
+  historia más larga (una causa judicial, una negociación, un conflicto, un
+  proyecto de ley, una obra), agregar un párrafo de contexto antes o después
+  de la novedad: qué es el caso o el tema, cómo empezó y cuáles fueron los
+  últimos desarrollos previos a la noticia de hoy, con fechas. Buscar ese
+  antecedente con la misma rigurosidad que la noticia. Ejemplo: ante el
+  sobreseimiento de Javier y Karina Milei, explicar qué fue el caso $Libra
+  (la promoción de la criptomoneda en febrero de 2025 y lo que pasó después)
+  y qué había ocurrido en la causa en las semanas anteriores. No hace falta
+  contexto en noticias autoexplicativas o de un solo hecho.
 - No repetir noticias de la edición anterior salvo que haya novedades; en ese
-  caso, contar solo lo nuevo.
+  caso, contar lo nuevo con un breve recordatorio del contexto.
 - Todo redactado con palabras propias: nada de copiar párrafos ni citas
   largas de los medios.
 
