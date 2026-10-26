@@ -78,11 +78,44 @@ Reglas del formato:
 - La línea de fuentes empieza con `Fuentes:` y lleva links en markdown.
 - Se pueden usar `**negrita**`, `*cursiva*` y listas con `- `.
 
+## Informes especiales
+
+Los pedidos están en `PEDIDOS.md`. Si hay al menos uno en "Pendientes", tomar
+**el primero** (uno por día) y agregarlo como **último capítulo** de la edición:
+
+```
+## Informe especial: <tema>
+
+Introducción breve: de qué se trata y por qué importa.
+
+### Antecedentes
+### Situación actual
+### Actores y posiciones
+### Qué puede pasar / qué mirar
+
+Fuentes: [...](https://...), [...](https://...)
+```
+
+- Los subtítulos son orientativos: adaptarlos al tema (para un tema científico
+  o técnico pueden ser "Cómo funciona", "Estado del arte", "Desafíos").
+- Extensión: entre 1.500 y 3.000 palabras. Profundidad de divulgación seria,
+  para un lector con formación técnica (ingeniero nuclear). Usar datos, fechas
+  y cifras concretas.
+- Investigar a fondo: muchas más búsquedas que para una noticia, y priorizar
+  fuentes primarias (documentos oficiales, informes de organismos, papers).
+- Mismo criterio de neutralidad que las noticias. Si el pedido incluye
+  aspectos específicos, cubrirlos todos.
+- Al terminar, mover la línea del pedido de "Pendientes" a "Hechos", agregando
+  la fecha de la edición al principio: `- AAAA-MM-DD: <pedido>`.
+- Si la edición incluye un informe, mencionarlo al final del título del libro:
+  `# Noticias del día — lunes 26 de octubre de 2026 · Informe: <tema corto>`.
+
 ## Pasos de cada ejecución
 
 1. Calcular la fecha de hoy en hora argentina (UTC-3).
 2. Leer la edición anterior en `ediciones/` para no repetir.
-3. Buscar las noticias de cada sección.
-4. Escribir `ediciones/AAAA-MM-DD.md`.
-5. Ejecutar `python3 tools/build.py ediciones/AAAA-MM-DD.md`.
-6. Hacer commit y push a `main` con el mensaje `Edición AAAA-MM-DD`.
+3. Revisar `PEDIDOS.md`.
+4. Buscar las noticias de cada sección y, si hay pedido, investigar el informe.
+5. Escribir `ediciones/AAAA-MM-DD.md` y, si hubo informe, actualizar `PEDIDOS.md`.
+6. Ejecutar `python3 tools/build.py ediciones/AAAA-MM-DD.md`.
+7. Hacer commit y push a `main` con el mensaje `Edición AAAA-MM-DD`.
