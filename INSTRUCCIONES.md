@@ -77,6 +77,11 @@ Reglas del formato:
 - `### ` es cada noticia.
 - La línea de fuentes empieza con `Fuentes:` y lleva links en markdown.
 - Se pueden usar `**negrita**`, `*cursiva*` y listas con `- `.
+- Tablas: se permiten en formato markdown (`| a | b |` con la fila `|---|---|`
+  debajo del encabezado), pero la pantalla del Kindle es angosta. Máximo
+  **4 columnas**, celdas cortas (números, nombres, fechas), sin texto largo.
+  Si los datos no entran en ese formato, usar una lista con un elemento por
+  fila, por ejemplo: `- **Lula:** 64,2 millones (51,78 %)`.
 
 ## Informes especiales
 

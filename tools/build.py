@@ -44,6 +44,10 @@ p { margin: 0 0 0.7em; text-align: justify; }
 ul { margin: 0 0 0.8em 1.1em; padding: 0; }
 li { margin-bottom: 0.3em; }
 a { color: inherit; }
+table { border-collapse: collapse; width: 100%; margin: 0.4em 0 1em; font-size: 0.85em; line-height: 1.25; }
+th, td { border: 1px solid #000; padding: 0.25em 0.35em; text-align: left; vertical-align: top; }
+th { font-weight: bold; }
+td.num, th.num { text-align: right; }
 """
 
 
@@ -59,12 +63,38 @@ def inline(text: str) -> str:
     return out
 
 
+def split_row(line: str):
+    return [c.strip() for c in line.strip().strip("|").split("|")]
+
+
+def table_html(rows) -> str:
+    """Tabla markdown (| a | b |) -> <table>. La fila |---| separa el encabezado."""
+    sep = next((i for i, r in enumerate(rows) if re.fullmatch(r"\|?[\s:|-]+\|?", r.strip())), None)
+    head = [split_row(r) for r in rows[:sep]] if sep is not None else []
+    body = [split_row(r) for r in (rows[sep + 1:] if sep is not None else rows)]
+    is_num = lambda c: bool(re.fullmatch(r"[+\-−]?[\d.,\s%]+(\([\d.,\s%]+\))?", c)) and any(ch.isdigit() for ch in c)
+
+    def cells(row, tag):
+        return "".join(
+            f'<{tag}{" class=\"num\"" if tag == "td" and is_num(c) else ""}>{inline(c)}</{tag}>'
+            for c in row)
+
+    out = "<table>"
+    if head:
+        out += "<thead>" + "".join(f"<tr>{cells(r, 'th')}</tr>" for r in head) + "</thead>"
+    out += "<tbody>" + "".join(f"<tr>{cells(r, 'td')}</tr>" for r in body) + "</tbody></table>"
+    return out
+
+
 def blocks_to_html(lines):
-    """Convierte las líneas de una sección en HTML (### títulos, listas, párrafos)."""
-    parts, para, items = [], [], []
+    """Convierte las líneas de una sección en HTML (### títulos, listas, tablas, párrafos)."""
+    parts, para, items, table = [], [], [], []
 
     def flush():
-        nonlocal para, items
+        nonlocal para, items, table
+        if table:
+            parts.append(table_html(table))
+            table = []
         if para:
             text = " ".join(para)
             cls = ' class="src"' if text.lower().startswith(("fuente", "fuentes")) else ""
@@ -78,15 +108,19 @@ def blocks_to_html(lines):
         line = raw.rstrip()
         if not line.strip():
             flush()
+        elif line.lstrip().startswith("|"):
+            if para or items:
+                flush()
+            table.append(line)
         elif line.startswith("### "):
             flush()
             parts.append(f"<h2>{inline(line[4:].strip())}</h2>")
         elif re.match(r"^\s*[-*] ", line):
-            if para:
+            if para or table:
                 flush()
             items.append(re.sub(r"^\s*[-*] ", "", line).strip())
         else:
-            if items:
+            if items or table:
                 flush()
             para.append(line.strip())
     flush()
