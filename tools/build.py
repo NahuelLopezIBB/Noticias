@@ -2,12 +2,13 @@
 """Arma la edición diaria y actualiza el catálogo OPDS.
 
 Uso:
-    python3 tools/build.py ediciones/AAAA-MM-DD.md
+    python3 tools/build.py ediciones/AAAA-MM-DD.md          (edición diaria)
+    python3 tools/build.py ediciones/AAAA-MM-DD-tema.md     (informe a pedido)
 
 Qué hace:
   1. Lee el markdown de la edición (formato descripto en INSTRUCCIONES.md).
   2. Genera epub/AAAA-MM-DD.epub (EPUB 3, un capítulo por sección "## ").
-  3. Borra las ediciones más viejas, conservando las últimas KEEP.
+  3. Borra las ediciones e informes de más de KEEP días.
   4. Regenera opds.xml (lo que lee KOReader) e index.html (para el navegador).
 
 Sin dependencias externas: solo la biblioteca estándar de Python.
@@ -25,7 +26,7 @@ from pathlib import Path
 BASE_URL = "https://nahuellopezibb.github.io/Noticias"
 FEED_TITLE = "Noticias del día"
 AUTHOR = "Resumen diario (Claude)"
-KEEP = 14  # ediciones que se conservan
+KEEP = 14  # días que se conservan
 
 ROOT = Path(__file__).resolve().parent.parent
 EPUB_DIR = ROOT / "epub"
@@ -149,7 +150,7 @@ def build_epub(date: str, title: str, intro, sections, out: Path):
     <dc:title>{html.escape(title)}</dc:title>
     <dc:creator>{html.escape(AUTHOR)}</dc:creator>
     <dc:language>es</dc:language>
-    <dc:date>{date}</dc:date>
+    <dc:date>{date[:10]}</dc:date>
     <meta property="dcterms:modified">{now}</meta>
   </metadata>
   <manifest>
@@ -243,9 +244,10 @@ def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     src = Path(sys.argv[1]).resolve()
-    date = src.stem
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
-        sys.exit("El archivo tiene que llamarse AAAA-MM-DD.md")
+    date = src.stem  # clave: AAAA-MM-DD o AAAA-MM-DD-tema
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}(-[a-z0-9]+(-[a-z0-9]+)*)?", date):
+        sys.exit("El archivo tiene que llamarse AAAA-MM-DD.md o AAAA-MM-DD-tema.md "
+                 "(tema en minúsculas, sin acentos, con guiones)")
 
     title, intro, sections = parse_edition(src.read_text(encoding="utf-8"))
     build_epub(date, title, intro, sections, EPUB_DIR / f"{date}.epub")
@@ -257,8 +259,9 @@ def main():
         "updated": dt.datetime.now(ART).isoformat(timespec="seconds"),
     }
 
-    # conservar solo las últimas KEEP ediciones
-    for old in sorted(index)[:-KEEP]:
+    # conservar solo lo de los últimos KEEP días
+    cutoff = (dt.datetime.now(ART).date() - dt.timedelta(days=KEEP)).isoformat()
+    for old in [k for k in index if k[:10] < cutoff]:
         index.pop(old)
         (EPUB_DIR / f"{old}.epub").unlink(missing_ok=True)
         (SRC_DIR / f"{old}.md").unlink(missing_ok=True)

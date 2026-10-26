@@ -110,6 +110,21 @@ Fuentes: [...](https://...), [...](https://...)
 - Si la edición incluye un informe, mencionarlo al final del título del libro:
   `# Noticias del día — lunes 26 de octubre de 2026 · Informe: <tema corto>`.
 
+## Informes a pedido (fuera del horario diario)
+
+A veces Nahuel pide un informe para una hora puntual. Esos salen como **libro
+aparte** en el catálogo, no dentro de la edición diaria:
+
+- Archivo: `ediciones/AAAA-MM-DD-tema.md`, con el tema en minúsculas, sin
+  acentos y con guiones (ej.: `2026-10-25-elecciones-brasil.md`).
+- Primera línea: `# Informe especial: <tema> — <fecha>`.
+- Cada parte del informe es un capítulo `## ` (Antecedentes, Situación actual,
+  etc.), con `### ` para subtemas. Mismos criterios de extensión, profundidad,
+  fuentes y neutralidad que los informes especiales de arriba.
+- Generar con `python3 tools/build.py ediciones/AAAA-MM-DD-tema.md` y hacer
+  commit y push con el mensaje `Informe AAAA-MM-DD-tema`.
+- No tocar `PEDIDOS.md` ni la edición diaria.
+
 ## Pasos de cada ejecución
 
 1. Calcular la fecha de hoy en hora argentina (UTC-3).
