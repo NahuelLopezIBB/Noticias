@@ -2,10 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
   <id>urn:noticias:catalogo</id>
   <title>Noticias del día</title>
-  <updated>2026-10-25T13:36:14-03:00</updated>
+  <updated>2026-10-25T22:45:18-03:00</updated>
   <author><name>Resumen diario (Claude)</name></author>
   <link rel="self" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
   <link rel="start" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <entry>
+    <title>Informe especial: elecciones en Brasil — 25 de octubre de 2026</title>
+    <id>urn:noticias:2026-10-25-elecciones-brasil</id>
+    <updated>2026-10-25T22:45:18-03:00</updated>
+    <author><name>Resumen diario (Claude)</name></author>
+    <dc:language>es</dc:language>
+    <summary>Secciones: Quién ganó · La jornada: prórroga del horario y suspensión del conteo · ¿Hay denuncias de fraude? · Cómo lo viven los candidatos y sus partidos · Antecedentes de la campaña · Lo que viene</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-10-25-elecciones-brasil.epub" type="application/epub+zip"/>
+  </entry>
   <entry>
     <title>Noticias del día — domingo 25 de octubre de 2026</title>
     <id>urn:noticias:2026-10-25</id>
