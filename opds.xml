@@ -2,10 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
   <id>urn:noticias:catalogo</id>
   <title>Noticias del día</title>
-  <updated>2026-10-28T10:07:04-03:00</updated>
+  <updated>2026-10-29T09:59:47-03:00</updated>
   <author><name>Resumen diario (Claude)</name></author>
   <link rel="self" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
   <link rel="start" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <entry>
+    <title>Noticias del día — jueves 29 de octubre de 2026</title>
+    <id>urn:noticias:2026-10-29</id>
+    <updated>2026-10-29T09:59:47-03:00</updated>
+    <author><name>Resumen diario (Claude)</name></author>
+    <dc:language>es</dc:language>
+    <summary>Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-10-29.epub" type="application/epub+zip"/>
+  </entry>
   <entry>
     <title>Noticias del día — miércoles 28 de octubre de 2026</title>
     <id>urn:noticias:2026-10-28</id>
