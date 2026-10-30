@@ -13,4 +13,6 @@ Se hace un informe por día, empezando por el primero de la lista.
 
 ## Pendientes
 
+- Los audios atribuidos a Karina Milei y el peritaje que se les realizó: qué dicen los audios y cómo se conocieron, en qué causa judicial se inscriben, quién ordenó y quién hizo el peritaje, qué método se usó y qué concluyó (autenticidad, edición o manipulación, identificación de voz), cómo lo interpretan el Gobierno, la defensa, la fiscalía y la oposición, y qué consecuencias judiciales y políticas puede tener. Distinguir con claridad entre lo que el peritaje establece y lo que no.
+
 ## Hechos
