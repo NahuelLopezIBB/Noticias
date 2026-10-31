@@ -2,10 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
   <id>urn:noticias:catalogo</id>
   <title>Noticias del día</title>
-  <updated>2026-10-30T09:04:19-03:00</updated>
+  <updated>2026-10-31T08:54:43-03:00</updated>
   <author><name>Resumen diario (Claude)</name></author>
   <link rel="self" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
   <link rel="start" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <entry>
+    <title>Noticias del día — sábado 31 de octubre de 2026 · Informe: la política en Polonia</title>
+    <id>urn:noticias:2026-10-31</id>
+    <updated>2026-10-31T08:54:43-03:00</updated>
+    <author><name>Resumen diario (Claude)</name></author>
+    <dc:language>es</dc:language>
+    <summary>Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear · Informe especial: la situación política en Polonia</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-10-31.epub" type="application/epub+zip"/>
+  </entry>
   <entry>
     <title>Noticias del día — viernes 30 de octubre de 2026 · Informe: los audios de la causa ANDIS</title>
     <id>urn:noticias:2026-10-30</id>
