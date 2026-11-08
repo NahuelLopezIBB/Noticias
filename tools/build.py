@@ -7,7 +7,8 @@ Uso:
 
 Qué hace:
   1. Lee el markdown de la edición (formato descripto en INSTRUCCIONES.md).
-  2. Genera epub/AAAA-MM-DD.epub (EPUB 3, un capítulo por sección "## ").
+  2. Genera epub/AAAA-MM-DD.epub (EPUB 3, un capítulo por sección "## ")
+     y web/AAAA-MM-DD.html (versión para leer en el navegador).
   3. Borra las ediciones e informes de más de KEEP días.
   4. Regenera opds.xml (lo que lee KOReader) e index.html (para el navegador).
 
@@ -228,6 +229,80 @@ def build_epub(date: str, title: str, intro, sections, out: Path):
             z.writestr(f"OEBPS/{f}", body, compress_type=zipfile.ZIP_DEFLATED)
 
 
+
+# ---------------------------------------------------------------- web
+
+WEB_DIR = ROOT / "web"
+
+WEB_CSS = """
+:root { --bg:#fbfaf7; --fg:#1d1c1a; --muted:#6b6862; --line:#dedad2; --accent:#7a4b1e; --card:#ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#161513; --fg:#e8e5df; --muted:#9a968e; --line:#33312d; --accent:#e0a868; --card:#1e1d1a; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font: 18px/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+main { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+nav.top { font: 14px/1.4 system-ui, sans-serif; margin-bottom: 1.5rem; display:flex; gap:1rem; flex-wrap:wrap; }
+nav.top a, .toc a { color: var(--accent); text-decoration: none; }
+nav.top a:hover, .toc a:hover { text-decoration: underline; }
+h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 0.6rem; }
+h2 { font-size: 1.35rem; margin: 2.6rem 0 0.8rem; padding-top: 0.6rem; border-top: 2px solid var(--fg); }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.4rem; }
+p { margin: 0 0 0.9rem; }
+.intro { font-style: italic; color: var(--muted); }
+.src { font: 13px/1.5 system-ui, sans-serif; color: var(--muted); }
+.src a { color: var(--muted); }
+a { color: var(--accent); }
+ul { padding-left: 1.2rem; }
+li { margin-bottom: 0.35rem; }
+.toc { font: 15px/1.5 system-ui, sans-serif; background: var(--card); border:1px solid var(--line);
+  border-radius: 8px; padding: 0.8rem 1rem; margin: 1.2rem 0 0; }
+.toc ol { margin: 0.3rem 0 0; padding-left: 1.3rem; }
+.tablewrap { overflow-x: auto; margin: 0.4rem 0 1.2rem; }
+table { border-collapse: collapse; width: 100%; font: 14px/1.4 system-ui, sans-serif; }
+th, td { border: 1px solid var(--line); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+th { background: var(--card); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+footer { font: 13px/1.5 system-ui, sans-serif; color: var(--muted); margin-top: 3rem; }
+"""
+
+
+def web_page(title, body, back="index.html"):
+    return f"""<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(title)}</title>
+<style>{WEB_CSS}</style>
+</head><body><main>
+{body}
+</main></body></html>
+"""
+
+
+def build_web(date: str, title: str, intro, sections, out: Path):
+    """Versión web: una sola página con índice y anclas por sección."""
+    toc = "".join(f'<li><a href="#s{n}">{html.escape(s["title"])}</a></li>'
+                  for n, s in enumerate(sections, 1))
+    parts = [
+        f'<nav class="top"><a href="../index.html">← Todas las ediciones</a>'
+        f'<a href="../epub/{date}.epub">Descargar EPUB</a></nav>',
+        f"<h1>{html.escape(title)}</h1>",
+    ]
+    intro_html = blocks_to_html(intro)
+    if intro_html:
+        parts.append(f'<div class="intro">{intro_html}</div>')
+    parts.append(f'<div class="toc"><strong>Secciones</strong><ol>{toc}</ol></div>')
+    for n, sec in enumerate(sections, 1):
+        body = blocks_to_html(sec["lines"]).replace("<h2>", "<h3>").replace("</h2>", "</h3>")
+        body = body.replace("<table>", '<div class="tablewrap"><table>').replace("</table>", "</table></div>")
+        parts.append(f'<section id="s{n}"><h2>{html.escape(sec["title"])}</h2>\n{body}</section>')
+    parts.append('<footer><a href="#">↑ Volver arriba</a> · <a href="../index.html">Todas las ediciones</a></footer>')
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(web_page(title, "\n".join(parts)), encoding="utf-8")
+
+
 # ------------------------------------------------------------ opds / index
 
 def write_catalog(index: dict):
@@ -258,19 +333,29 @@ def write_catalog(index: dict):
 """
     (ROOT / "opds.xml").write_text(feed, encoding="utf-8")
 
-    rows = "".join(
-        f'<li><a href="epub/{d}.epub">{html.escape(index[d]["title"])}</a></li>'
-        for d in sorted(index, reverse=True))
-    page = f"""<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(FEED_TITLE)}</title>
-<style>body{{font-family:system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem;line-height:1.5}}</style>
-</head><body>
-<h1>{html.escape(FEED_TITLE)}</h1>
-<p>Catálogo OPDS para KOReader: <code>{BASE_URL}/opds.xml</code></p>
-<ul>{rows}</ul>
-</body></html>
-"""
+    rows = []
+    for d in sorted(index, reverse=True):
+        t = html.escape(index[d]["title"])
+        if (WEB_DIR / f"{d}.html").exists():
+            rows.append(f'<li><a class="t" href="web/{d}.html">{t}</a>'
+                        f'<span class="f"><a href="web/{d}.html">Leer en la web</a> · '
+                        f'<a href="epub/{d}.epub">EPUB</a></span></li>')
+        else:
+            rows.append(f'<li><span class="t">{t}</span>'
+                        f'<span class="f"><a href="epub/{d}.epub">EPUB</a></span></li>')
+    body = f"""<h1>{html.escape(FEED_TITLE)}</h1>
+<p class="intro">Resumen diario de noticias. Cada edición se puede leer en el navegador o descargar en EPUB.</p>
+<ul class="list">{"".join(rows)}</ul>
+<footer>Catálogo OPDS para KOReader: <code>{BASE_URL}/opds.xml</code></footer>"""
+    extra = """<style>
+.list { list-style:none; padding:0; margin:1.5rem 0 0; }
+.list li { padding:0.8rem 0; border-bottom:1px solid var(--line); margin:0; }
+.list .t { display:block; font-size:1.05rem; color:var(--fg); text-decoration:none; }
+.list a.t:hover { text-decoration:underline; }
+.list .f { font: 14px/1.5 system-ui, sans-serif; color:var(--muted); }
+code { font-size: 0.85em; word-break: break-all; }
+</style>"""
+    page = web_page(FEED_TITLE, body).replace("</head>", extra + "</head>")
     (ROOT / "index.html").write_text(page, encoding="utf-8")
 
 
@@ -285,6 +370,7 @@ def main():
 
     title, intro, sections = parse_edition(src.read_text(encoding="utf-8"))
     build_epub(date, title, intro, sections, EPUB_DIR / f"{date}.epub")
+    build_web(date, title, intro, sections, WEB_DIR / f"{date}.html")
 
     index = json.loads(INDEX_JSON.read_text(encoding="utf-8")) if INDEX_JSON.exists() else {}
     index[date] = {
@@ -298,12 +384,13 @@ def main():
     for old in [k for k in index if k[:10] < cutoff]:
         index.pop(old)
         (EPUB_DIR / f"{old}.epub").unlink(missing_ok=True)
+        (WEB_DIR / f"{old}.html").unlink(missing_ok=True)
         (SRC_DIR / f"{old}.md").unlink(missing_ok=True)
 
     INDEX_JSON.write_text(json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8")
     write_catalog(index)
     (ROOT / ".nojekyll").touch()
-    print(f"OK: epub/{date}.epub — {len(sections)} secciones — {len(index)} ediciones en el catálogo")
+    print(f"OK: epub/{date}.epub + web/{date}.html — {len(sections)} secciones — {len(index)} ediciones en el catálogo")
 
 
 if __name__ == "__main__":

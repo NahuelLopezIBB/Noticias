@@ -1,9 +1,50 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Noticias del día</title>
-<style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem;line-height:1.5}</style>
-</head><body>
+<style>
+:root { --bg:#fbfaf7; --fg:#1d1c1a; --muted:#6b6862; --line:#dedad2; --accent:#7a4b1e; --card:#ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#161513; --fg:#e8e5df; --muted:#9a968e; --line:#33312d; --accent:#e0a868; --card:#1e1d1a; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin:0; background:var(--bg); color:var(--fg);
+  font: 18px/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+main { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+nav.top { font: 14px/1.4 system-ui, sans-serif; margin-bottom: 1.5rem; display:flex; gap:1rem; flex-wrap:wrap; }
+nav.top a, .toc a { color: var(--accent); text-decoration: none; }
+nav.top a:hover, .toc a:hover { text-decoration: underline; }
+h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 0.6rem; }
+h2 { font-size: 1.35rem; margin: 2.6rem 0 0.8rem; padding-top: 0.6rem; border-top: 2px solid var(--fg); }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.4rem; }
+p { margin: 0 0 0.9rem; }
+.intro { font-style: italic; color: var(--muted); }
+.src { font: 13px/1.5 system-ui, sans-serif; color: var(--muted); }
+.src a { color: var(--muted); }
+a { color: var(--accent); }
+ul { padding-left: 1.2rem; }
+li { margin-bottom: 0.35rem; }
+.toc { font: 15px/1.5 system-ui, sans-serif; background: var(--card); border:1px solid var(--line);
+  border-radius: 8px; padding: 0.8rem 1rem; margin: 1.2rem 0 0; }
+.toc ol { margin: 0.3rem 0 0; padding-left: 1.3rem; }
+.tablewrap { overflow-x: auto; margin: 0.4rem 0 1.2rem; }
+table { border-collapse: collapse; width: 100%; font: 14px/1.4 system-ui, sans-serif; }
+th, td { border: 1px solid var(--line); padding: 0.35rem 0.5rem; text-align: left; vertical-align: top; }
+th { background: var(--card); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+footer { font: 13px/1.5 system-ui, sans-serif; color: var(--muted); margin-top: 3rem; }
+</style>
+<style>
+.list { list-style:none; padding:0; margin:1.5rem 0 0; }
+.list li { padding:0.8rem 0; border-bottom:1px solid var(--line); margin:0; }
+.list .t { display:block; font-size:1.05rem; color:var(--fg); text-decoration:none; }
+.list a.t:hover { text-decoration:underline; }
+.list .f { font: 14px/1.5 system-ui, sans-serif; color:var(--muted); }
+code { font-size: 0.85em; word-break: break-all; }
+</style></head><body><main>
 <h1>Noticias del día</h1>
-<p>Catálogo OPDS para KOReader: <code>https://nahuellopezibb.github.io/Noticias/opds.xml</code></p>
-<ul><li><a href="epub/2026-11-08.epub">Noticias del día — domingo 8 de noviembre de 2026</a></li><li><a href="epub/2026-11-07.epub">Noticias del día — sábado 7 de noviembre de 2026</a></li><li><a href="epub/2026-11-06.epub">Noticias del día — viernes 6 de noviembre de 2026</a></li><li><a href="epub/2026-11-05.epub">Noticias del día — jueves 5 de noviembre de 2026</a></li><li><a href="epub/2026-11-04.epub">Noticias del día — miércoles 4 de noviembre de 2026</a></li><li><a href="epub/2026-11-03.epub">Noticias del día — martes 3 de noviembre de 2026</a></li><li><a href="epub/2026-11-02.epub">Noticias del día — lunes 2 de noviembre de 2026</a></li><li><a href="epub/2026-11-01.epub">Noticias del día — domingo 1 de noviembre de 2026</a></li><li><a href="epub/2026-10-31.epub">Noticias del día — sábado 31 de octubre de 2026 · Informe: la política en Polonia</a></li><li><a href="epub/2026-10-30.epub">Noticias del día — viernes 30 de octubre de 2026 · Informe: los audios de la causa ANDIS</a></li><li><a href="epub/2026-10-29.epub">Noticias del día — jueves 29 de octubre de 2026</a></li><li><a href="epub/2026-10-28.epub">Noticias del día — miércoles 28 de octubre de 2026</a></li><li><a href="epub/2026-10-27.epub">Noticias del día — martes 27 de octubre de 2026</a></li><li><a href="epub/2026-10-26-elecciones-brasil-actualizacion.epub">Informe especial: elecciones en Brasil (actualización) — 26 de octubre de 2026</a></li><li><a href="epub/2026-10-26.epub">Noticias del día — lunes 26 de octubre de 2026</a></li><li><a href="epub/2026-10-25-elecciones-brasil.epub">Informe especial: elecciones en Brasil — 25 de octubre de 2026</a></li><li><a href="epub/2026-10-25.epub">Noticias del día — domingo 25 de octubre de 2026</a></li></ul>
-</body></html>
+<p class="intro">Resumen diario de noticias. Cada edición se puede leer en el navegador o descargar en EPUB.</p>
+<ul class="list"><li><a class="t" href="web/2026-11-08.html">Noticias del día — domingo 8 de noviembre de 2026</a><span class="f"><a href="web/2026-11-08.html">Leer en la web</a> · <a href="epub/2026-11-08.epub">EPUB</a></span></li><li><a class="t" href="web/2026-11-07.html">Noticias del día — sábado 7 de noviembre de 2026</a><span class="f"><a href="web/2026-11-07.html">Leer en la web</a> · <a href="epub/2026-11-07.epub">EPUB</a></span></li><li><span class="t">Noticias del día — viernes 6 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-06.epub">EPUB</a></span></li><li><span class="t">Noticias del día — jueves 5 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-05.epub">EPUB</a></span></li><li><span class="t">Noticias del día — miércoles 4 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-04.epub">EPUB</a></span></li><li><span class="t">Noticias del día — martes 3 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-03.epub">EPUB</a></span></li><li><span class="t">Noticias del día — lunes 2 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-02.epub">EPUB</a></span></li><li><span class="t">Noticias del día — domingo 1 de noviembre de 2026</span><span class="f"><a href="epub/2026-11-01.epub">EPUB</a></span></li><li><span class="t">Noticias del día — sábado 31 de octubre de 2026 · Informe: la política en Polonia</span><span class="f"><a href="epub/2026-10-31.epub">EPUB</a></span></li><li><span class="t">Noticias del día — viernes 30 de octubre de 2026 · Informe: los audios de la causa ANDIS</span><span class="f"><a href="epub/2026-10-30.epub">EPUB</a></span></li><li><span class="t">Noticias del día — jueves 29 de octubre de 2026</span><span class="f"><a href="epub/2026-10-29.epub">EPUB</a></span></li><li><span class="t">Noticias del día — miércoles 28 de octubre de 2026</span><span class="f"><a href="epub/2026-10-28.epub">EPUB</a></span></li><li><span class="t">Noticias del día — martes 27 de octubre de 2026</span><span class="f"><a href="epub/2026-10-27.epub">EPUB</a></span></li><li><span class="t">Informe especial: elecciones en Brasil (actualización) — 26 de octubre de 2026</span><span class="f"><a href="epub/2026-10-26-elecciones-brasil-actualizacion.epub">EPUB</a></span></li><li><span class="t">Noticias del día — lunes 26 de octubre de 2026</span><span class="f"><a href="epub/2026-10-26.epub">EPUB</a></span></li><li><span class="t">Informe especial: elecciones en Brasil — 25 de octubre de 2026</span><span class="f"><a href="epub/2026-10-25-elecciones-brasil.epub">EPUB</a></span></li><li><span class="t">Noticias del día — domingo 25 de octubre de 2026</span><span class="f"><a href="epub/2026-10-25.epub">EPUB</a></span></li></ul>
+<footer>Catálogo OPDS para KOReader: <code>https://nahuellopezibb.github.io/Noticias/opds.xml</code></footer>
+</main></body></html>

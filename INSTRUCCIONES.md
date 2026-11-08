@@ -137,5 +137,6 @@ aparte** en el catálogo, no dentro de la edición diaria:
 3. Revisar `PEDIDOS.md`.
 4. Buscar las noticias de cada sección y, si hay pedido, investigar el informe.
 5. Escribir `ediciones/AAAA-MM-DD.md` y, si hubo informe, actualizar `PEDIDOS.md`.
-6. Ejecutar `python3 tools/build.py ediciones/AAAA-MM-DD.md`.
+6. Ejecutar `python3 tools/build.py ediciones/AAAA-MM-DD.md` Genera el EPUB (`epub/`) y la versión web
+   (`web/`); los dos formatos tienen que subirse.
 7. Hacer commit y push a `main` con el mensaje `Edición AAAA-MM-DD`.
