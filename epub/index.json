@@ -1,14 +1,4 @@
 {
-  "2026-10-25": {
-    "title": "Noticias del día — domingo 25 de octubre de 2026",
-    "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
-    "updated": "2026-10-25T13:36:14-03:00"
-  },
-  "2026-10-25-elecciones-brasil": {
-    "title": "Informe especial: elecciones en Brasil — 25 de octubre de 2026",
-    "summary": "Secciones: Quién ganó · La jornada: prórroga del horario y suspensión del conteo · ¿Hay denuncias de fraude? · Cómo lo viven los candidatos y sus partidos · Antecedentes de la campaña · Lo que viene",
-    "updated": "2026-10-25T23:08:42-03:00"
-  },
   "2026-10-26": {
     "title": "Noticias del día — lunes 26 de octubre de 2026",
     "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
@@ -83,5 +73,10 @@
     "title": "Noticias del día — domingo 8 de noviembre de 2026",
     "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
     "updated": "2026-11-08T20:52:12-03:00"
+  },
+  "2026-11-09": {
+    "title": "Noticias del día — lunes 9 de noviembre de 2026",
+    "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
+    "updated": "2026-11-09T09:03:35-03:00"
   }
 }
