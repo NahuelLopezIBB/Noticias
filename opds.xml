@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
   <id>urn:noticias:catalogo</id>
   <title>Noticias del día</title>
-  <updated>2026-11-08T20:52:12-03:00</updated>
+  <updated>2026-11-08T21:00:51-03:00</updated>
   <author><name>Resumen diario (Claude)</name></author>
   <link rel="self" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
   <link rel="start" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
