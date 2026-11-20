@@ -1,9 +1,4 @@
 {
-  "2026-11-05": {
-    "title": "Noticias del día — jueves 5 de noviembre de 2026",
-    "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
-    "updated": "2026-11-05T08:59:29-03:00"
-  },
   "2026-11-06": {
     "title": "Noticias del día — viernes 6 de noviembre de 2026",
     "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
@@ -78,5 +73,10 @@
     "title": "Noticias del día — jueves 19 de noviembre de 2026",
     "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
     "updated": "2026-11-19T08:47:45-03:00"
+  },
+  "2026-11-20": {
+    "title": "Noticias del día — viernes 20 de noviembre de 2026",
+    "summary": "Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear",
+    "updated": "2026-11-20T08:51:52-03:00"
   }
 }
