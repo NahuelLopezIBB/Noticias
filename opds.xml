@@ -2,10 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/terms/" xmlns:opds="http://opds-spec.org/2010/catalog">
   <id>urn:noticias:catalogo</id>
   <title>Noticias del día</title>
-  <updated>2026-11-26T08:48:24-03:00</updated>
+  <updated>2026-11-27T08:53:38-03:00</updated>
   <author><name>Resumen diario (Claude)</name></author>
   <link rel="self" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
   <link rel="start" href="https://nahuellopezibb.github.io/Noticias/opds.xml" type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+  <entry>
+    <title>Noticias del día — viernes 27 de noviembre de 2026</title>
+    <id>urn:noticias:2026-11-27</id>
+    <updated>2026-11-27T08:53:38-03:00</updated>
+    <author><name>Resumen diario (Claude)</name></author>
+    <dc:language>es</dc:language>
+    <summary>Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear</summary>
+    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-11-27.epub" type="application/epub+zip"/>
+  </entry>
   <entry>
     <title>Noticias del día — jueves 26 de noviembre de 2026</title>
     <id>urn:noticias:2026-11-26</id>
@@ -131,23 +140,5 @@
     <dc:language>es</dc:language>
     <summary>Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear</summary>
     <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-11-13.epub" type="application/epub+zip"/>
-  </entry>
-  <entry>
-    <title>Informe especial: Cristina Kirchner y la causa Vialidad — 12 de noviembre de 2026</title>
-    <id>urn:noticias:2026-11-12-cristina-kirchner-vialidad</id>
-    <updated>2026-11-12T12:47:44-03:00</updated>
-    <author><name>Resumen diario (Claude)</name></author>
-    <dc:language>es</dc:language>
-    <summary>Secciones: Qué se juzgó · Cronología del proceso · Qué dieron por probado los tribunales · Por qué sus defensores dicen que el juicio no fue justo · Qué dicen quienes defienden el fallo · La situación hoy · Síntesis: qué está establecido y qué sigue en disputa</summary>
-    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-11-12-cristina-kirchner-vialidad.epub" type="application/epub+zip"/>
-  </entry>
-  <entry>
-    <title>Noticias del día — jueves 12 de noviembre de 2026</title>
-    <id>urn:noticias:2026-11-12</id>
-    <updated>2026-11-12T08:56:13-03:00</updated>
-    <author><name>Resumen diario (Claude)</name></author>
-    <dc:language>es</dc:language>
-    <summary>Secciones: Argentina: política y economía · Geopolítica y conflictos · Ciencia y tecnología · Sector nuclear</summary>
-    <link rel="http://opds-spec.org/acquisition" href="https://nahuellopezibb.github.io/Noticias/epub/2026-11-12.epub" type="application/epub+zip"/>
   </entry>
 </feed>
